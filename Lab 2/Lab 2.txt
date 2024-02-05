@@ -1,0 +1,46 @@
+clc
+clear all
+close all
+fs = 500;
+t = 0:1/fs:0.5;
+f1 = 3;
+f2 = 4;
+A1 = 3; 
+A2 = 7;
+signal_x = A1*sin(2*pi*f1*t) + A2*cos(2*pi*f2*t);
+plot(t,signal_x ,'k--o','LineWidth',1)
+xlabel('time in seconds')
+ylabel('Amplitude in volts')
+title('Signals of different Frequencies')
+legend('Signal x1','Signal x2')
+
+
+
+
+
+==========================================
+
+clc
+clear all
+close all
+fs = 5000; 
+t = 0:1/fs:2; 
+f1 = 3;
+f2 = 4;
+A1 = 3; 
+A2 = 7;
+signal_x = A1*sin(2*pi*f1*t) + A2*cos(2*pi*f2*t);
+nx = length(t);
+fx1 = fft(signal_x ); 
+fx1 = fftshift(signal_x)/(nx/2); 
+f = linspace(-fs/2,fs/2,nx);
+bar(f, abs(fx1 ),2,'k')
+hold on
+bar(f, abs(fx2 ),2,'k')
+hold off
+axis([-50 50 0 4])
+xlabel('Frequency (Hz)');
+ylabel('Amplitude');
+title('Frequency Domain Representation of Different Signals');
+legend('Signal x1','Signal x2')
+
